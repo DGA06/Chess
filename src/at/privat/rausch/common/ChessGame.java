@@ -35,13 +35,12 @@ public class ChessGame {
             pieces[6][i] = new Pawn(new Point(i, 6), PieceColor.WHITE);
         }
 
-        int counter = 0;
         for (PieceColor color : PieceColor.values()) {
-            pieces[counter * 7][0] = new Rook(new Point(0,counter * 7), color);
-            pieces[counter * 7][7] = new Rook(new Point(7,counter * 7), color);
-            pieces[counter * 7][2] = new Bishop(new Point(2,counter * 7), color);
-            pieces[counter * 7][5] = new Bishop(new Point(5,counter * 7), color);
-            counter++;
+            int posY = color.getValue() * 7;
+            pieces[posY][0] = new Rook(new Point(0,posY), color);
+            pieces[posY][7] = new Rook(new Point(7,posY), color);
+            pieces[posY][2] = new Bishop(new Point(2,posY), color);
+            pieces[posY][5] = new Bishop(new Point(5,posY), color);
         }
     }
 

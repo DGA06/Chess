@@ -29,4 +29,11 @@ public class Main {
         mainFrame.setVisible(true);
         mainFrame.addKeyListener(new KeyboardAdapter(gui));
     }
+
+    public static void hardReset() {
+        game = new ChessGame();
+        GameGui gui = new GameGui(game);
+        mainFrame.setContentPane(gui.getGamePanel());
+        mainFrame.addKeyListener(new KeyboardAdapter(gui));
+    }
 }

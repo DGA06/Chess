@@ -19,4 +19,11 @@ public class KeyboardAdapter extends KeyAdapter {
             Main.getGame().setSelectedPiece(null);
         }
     }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        if (e.getKeyCode() == KeyEvent.VK_R && e.isControlDown() && e.isAltDown()) {
+            Main.hardReset();
+        }
+    }
 }
