@@ -24,16 +24,16 @@ public class ButtonListener implements ActionListener {
 
         Point buttonPos = new Point(posX, posY);
 
-        if (gui.getGame().getSelectedPiece() != null) {
-            gui.getGame().moveSelectedPiece(buttonPos);
+        if (Main.getGame().getSelectedPiece() != null) {
+            Main.getGame().moveSelectedPiece(buttonPos);
             gui.reloadButtons();
             return;
         }
 
-        if (!gui.getGame().isFree(buttonPos)) {
-            gui.getGame().setSelectedPiece(gui.getGame().getPiece(buttonPos));
-            gui.getGame().resetButtonColors();
-            gui.getGame().highlightButtons(buttonPos);
+        if (!Main.getGame().isFree(buttonPos)) {
+            Main.getGame().setSelectedPiece(Main.getGame().getPiece(buttonPos));
+            Main.getGame().resetButtonColors();
+            Main.getGame().highlightButtons(buttonPos);
         }
 
         Main.getMainFrame().requestFocus();

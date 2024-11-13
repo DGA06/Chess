@@ -11,11 +11,11 @@ import java.awt.*;
 public class GameGui {
     @Getter
     private JPanel gamePanel;
-    @Getter
-    private ChessGame game;
+    private final ChessGame game;
     private final ButtonListener buttonListener;
 
-    public GameGui() {
+    public GameGui(ChessGame game) {
+        this.game = game;
         buttonListener = new ButtonListener(this);
         loadPanel();
         loadPieces();
@@ -25,7 +25,6 @@ public class GameGui {
         gamePanel = new JPanel();
         gamePanel.setLayout(new GridLayout(0, 8));
 
-        game = new ChessGame();
         GameButton[][] buttons = game.getBoard().getGameField();
 
         for (GameButton[] row : buttons) {

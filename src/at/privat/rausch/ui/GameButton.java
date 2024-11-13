@@ -12,8 +12,8 @@ public class GameButton extends JButton {
 
     public GameButton(Point pos, Color color) {
         this.setPreferredSize(new Dimension(
-                50 * Integer.parseInt(Pref.getPref("ui_scale").orElse("1")),
-                50 * Integer.parseInt(Pref.getPref("ui_scale").orElse("1"))
+                (int) (50 * Double.parseDouble(Pref.getPref("ui_scale").orElse("1"))),
+                (int) (50 * Double.parseDouble(Pref.getPref("ui_scale").orElse("1")))
         ));
         this.pos = pos;
         this.setBackground(color);
