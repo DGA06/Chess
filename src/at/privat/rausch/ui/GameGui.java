@@ -2,7 +2,6 @@ package at.privat.rausch.ui;
 
 import at.privat.rausch.common.ChessGame;
 import at.privat.rausch.pieces.Piece;
-import at.privat.rausch.pref.Pref;
 import lombok.Getter;
 
 import javax.swing.*;

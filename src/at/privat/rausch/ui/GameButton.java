@@ -6,8 +6,8 @@ import lombok.Getter;
 import javax.swing.*;
 import java.awt.*;
 
+@Getter
 public class GameButton extends JButton {
-    @Getter
     Point pos;
 
     public GameButton(Point pos, Color color) {
