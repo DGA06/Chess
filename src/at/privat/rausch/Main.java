@@ -13,13 +13,16 @@ public class Main {
     private static JFrame mainFrame;
     @Getter
     private static ChessGame game;
+    private static final GameGui gui;
+
+    static {
+        game = new ChessGame();
+        gui = new GameGui(game);
+    }
 
     public static void main() {
-        game = new ChessGame();
-
         double uiScale = Double.parseDouble(Pref.getPref("ui_scale").orElse("1"));
 
-        GameGui gui = new GameGui(game);
         mainFrame = new JFrame("Simple Chess");
         mainFrame.setContentPane(gui.getGamePanel());
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -27,13 +30,15 @@ public class Main {
         mainFrame.setBounds(500, 0,  ((int) (50 * uiScale) * 8) + 10, ((int) (50 * uiScale) * 8 ) + 30);
         mainFrame.setResizable(false);
         mainFrame.setVisible(true);
-        mainFrame.addKeyListener(new KeyboardAdapter(gui));
+        mainFrame.addKeyListener(KeyboardAdapter.getINSTANCE());
+        mainFrame.requestFocus();
     }
 
     public static void hardReset() {
         game = new ChessGame();
-        GameGui gui = new GameGui(game);
-        mainFrame.setContentPane(gui.getGamePanel());
-        mainFrame.addKeyListener(new KeyboardAdapter(gui));
+        gui.setGame(game);
+        gui.reloadPanel();
+        gui.reloadButtons();
+        mainFrame.requestFocus();
     }
 }

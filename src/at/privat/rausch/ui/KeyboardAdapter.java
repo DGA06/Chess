@@ -1,16 +1,21 @@
 package at.privat.rausch.ui;
 
 import at.privat.rausch.Main;
+import lombok.Getter;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 public class KeyboardAdapter extends KeyAdapter {
-    GameGui gui;
+    @Getter
+    private static final KeyboardAdapter INSTANCE;
 
-    public KeyboardAdapter(GameGui gui) {
-        this.gui = gui;
+    static {
+        INSTANCE = new KeyboardAdapter();
     }
+
+    private KeyboardAdapter() {};
 
     @Override
     public void keyReleased(KeyEvent e) {
@@ -18,10 +23,7 @@ public class KeyboardAdapter extends KeyAdapter {
             Main.getGame().resetButtonColors();
             Main.getGame().setSelectedPiece(null);
         }
-    }
 
-    @Override
-    public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_R && e.isControlDown() && e.isAltDown()) {
             Main.hardReset();
         }

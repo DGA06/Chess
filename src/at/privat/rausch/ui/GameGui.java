@@ -3,6 +3,7 @@ package at.privat.rausch.ui;
 import at.privat.rausch.common.ChessGame;
 import at.privat.rausch.pieces.Piece;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,20 +11,22 @@ import java.awt.*;
 public class GameGui {
     @Getter
     private JPanel gamePanel;
-    private final ChessGame game;
+    @Setter
+    private ChessGame game;
     private final ButtonListener buttonListener;
 
     public GameGui(ChessGame game) {
         this.game = game;
         buttonListener = new ButtonListener(this);
+
+        gamePanel = new JPanel();
+        gamePanel.setLayout(new GridLayout(0, 8));
+
         loadPanel();
         loadPieces();
     }
 
     private void loadPanel() {
-        gamePanel = new JPanel();
-        gamePanel.setLayout(new GridLayout(0, 8));
-
         GameButton[][] buttons = game.getBoard().getGameField();
 
         for (GameButton[] row : buttons) {
@@ -33,7 +36,7 @@ public class GameGui {
                 gamePanel.add(button);
             }
         }
-        gamePanel.add(new Label());
+        gamePanel.add(new Label("Label Stuff"));
     }
 
     private void loadPieces() {
@@ -55,6 +58,12 @@ public class GameGui {
                 }
             }
         }
+    }
+
+    public void reloadPanel() {
+        gamePanel.removeAll();
+
+        loadPanel();
     }
 
     public void reloadButtons() {
