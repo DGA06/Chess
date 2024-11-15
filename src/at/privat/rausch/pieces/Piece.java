@@ -2,6 +2,7 @@ package at.privat.rausch.pieces;
 
 import at.privat.rausch.pref.Pref;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -15,6 +16,7 @@ public abstract class Piece {
 
     protected Image[] skins;
     protected Point pos;
+    @Setter
     protected boolean beaten = false;
     protected PieceColor color;
 

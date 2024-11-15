@@ -7,8 +7,8 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public class GameBoard {
-    @Getter
     GameButton[][] gameField;
 
     public GameBoard() {
@@ -53,21 +53,27 @@ public class GameBoard {
     }
 
     public void highlightButtons(List<Point> posList) {
+        float[] rgb = Color.RGBtoHSB(216, 208, 131, null);
+
         for (Point pos : posList) {
-            gameField[pos.y][pos.x].setBackground(Color.ORANGE);
+            gameField[pos.y][pos.x].setBackground(Color.getHSBColor(rgb[0], rgb[1], rgb[2]));
         }
     }
 
     public void highlightButtons(ArrayList<ArrayList<Point>> posList) {
+        float[] rgb = Color.RGBtoHSB(216, 208, 131, null);
+
         for (ArrayList<Point> dirPosList : posList) {
             for (Point pos : dirPosList) {
-                gameField[pos.y][pos.x].setBackground(Color.ORANGE);
+                gameField[pos.y][pos.x].setBackground(Color.getHSBColor(rgb[0], rgb[1], rgb[2]));
             }
         }
     }
 
     public void highlightButton(Point pos) {
-        gameField[pos.y][pos.x].setBackground(Color.RED);
+        float [] rgb = Color.RGBtoHSB(255, 159, 114, null);
+
+        gameField[pos.y][pos.x].setBackground(Color.getHSBColor(rgb[0], rgb[1], rgb[2]));
     }
 
     public static boolean validatePosition(Point pos) {

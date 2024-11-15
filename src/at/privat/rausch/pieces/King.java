@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class King extends Piece{
     public King(Point pos, PieceColor color) {
-        super(pos, new String[] {"data/pawn_black.png", "data/pawn_white.png"}, color);
+        super(pos, new String[] {"data/king_black.png", "data/king_white.png"}, color);
     }
 
     public ArrayList<ArrayList<Point>> getPossibleMoves () {
@@ -23,7 +23,7 @@ public class King extends Piece{
                 tempPos = new Point(pos.x + x, pos.y + y);
                 if (GameBoard.validatePosition(tempPos) && !tempPos.equals(pos)) {
                     posList.add(new ArrayList<>());
-                    posList.get(posList.size() - 1).add(tempPos);
+                    posList.getLast().add(tempPos);
                 }
             }
         }

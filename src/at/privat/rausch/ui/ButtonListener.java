@@ -27,6 +27,7 @@ public class ButtonListener implements ActionListener {
         if (Main.getGame().getSelectedPiece() != null) {
             Main.getGame().moveSelectedPiece(buttonPos);
             gui.reloadButtons();
+            Main.getMainFrame().requestFocus();
             return;
         }
 

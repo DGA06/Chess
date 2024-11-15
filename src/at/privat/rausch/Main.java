@@ -31,6 +31,7 @@ public class Main {
         mainFrame.setResizable(false);
         mainFrame.setVisible(true);
         mainFrame.addKeyListener(KeyboardAdapter.getINSTANCE());
+        mainFrame.setAutoRequestFocus(true);
         mainFrame.requestFocus();
     }
 

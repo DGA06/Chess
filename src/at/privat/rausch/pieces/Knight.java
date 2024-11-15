@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class Knight extends Piece {
 
     public Knight(Point pos, PieceColor color) {
-        super(pos, new String[] {"data/pawn_black.png", "data/pawn_white.png"}, color);
+        super(pos, new String[] {"data/knight_black.png", "data/knight_white.png"}, color);
     }
 
     @Override

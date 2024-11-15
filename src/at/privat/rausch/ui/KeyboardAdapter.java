@@ -5,7 +5,6 @@ import lombok.Getter;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 
 public class KeyboardAdapter extends KeyAdapter {
     @Getter
@@ -15,7 +14,7 @@ public class KeyboardAdapter extends KeyAdapter {
         INSTANCE = new KeyboardAdapter();
     }
 
-    private KeyboardAdapter() {};
+    private KeyboardAdapter() {}
 
     @Override
     public void keyReleased(KeyEvent e) {

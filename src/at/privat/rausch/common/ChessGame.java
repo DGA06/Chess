@@ -9,7 +9,7 @@ import java.util.ArrayList;
 public class ChessGame {
     @Getter
     private final Piece[][] pieces;
-    private ArrayList<Piece> beatenPieces;
+    private final ArrayList<Piece> beatenPieces;
     @Getter
     private final GameBoard board;
     @Getter
@@ -26,6 +26,7 @@ public class ChessGame {
     public ChessGame() {
         board = new GameBoard();
         pieces = new Piece[8][8];
+        beatenPieces = new ArrayList<>();
         initializePieces();
     }
 
@@ -39,8 +40,12 @@ public class ChessGame {
             int posY = color.getValue() * 7;
             pieces[posY][0] = new Rook(new Point(0,posY), color);
             pieces[posY][7] = new Rook(new Point(7,posY), color);
+            pieces[posY][1] = new Knight(new Point(1,posY), color);
+            pieces[posY][6] = new Knight(new Point(6,posY), color);
             pieces[posY][2] = new Bishop(new Point(2,posY), color);
             pieces[posY][5] = new Bishop(new Point(5,posY), color);
+            pieces[posY][3] = new Queen(new Point(3,posY), color);
+            pieces[posY][4] = new King(new Point(4,posY), color);
         }
     }
 
@@ -49,15 +54,16 @@ public class ChessGame {
     }
 
     public void movePiece(Point pos, Point dest) {
-        if (notPossible(dest)) {
+        if (!isPossible(dest)) {
             selectedPiece = null;
             return;
         }
 
-        if (pieces[dest.y][dest.x] == null) {
-            pieces[dest.y][dest.x] = pieces[pos.y][pos.x];
+        if (!isFree(dest)) {
+            beatPiece(dest);
         }
 
+        pieces[dest.y][dest.x] = pieces[pos.y][pos.x];
         pieces[pos.y][pos.x] = null;
         pieces[dest.y][dest.x].move(dest);
 
@@ -68,13 +74,23 @@ public class ChessGame {
         return pieces[pos.y][pos.x] == null;
     }
 
-    public boolean notPossible(Point dest) {
+    public boolean isPossible(Point dest) {
         for (ArrayList<Point> directionMoves : possibleMoves) {
-            if (directionMoves.contains(dest) && isFree(dest)) {
-                return false;
+            if (directionMoves.contains(dest)) {
+                if (isFree(dest)) {
+                    return true;
+                }
+                else return getPiece(dest).getColor() != selectedPiece.getColor();
             }
         }
-        return true;
+        return false;
+    }
+
+    private void beatPiece(Point pos) {
+        Piece piece = getPiece(pos);
+
+        beatenPieces.add(piece);
+        piece.setBeaten(true);
     }
 
     public Piece getPiece(Point pos) {
