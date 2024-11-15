@@ -36,22 +36,15 @@ public class Queen extends Piece{
             }
         }
 
-        int[] bounds = new int[]{0, 0};
         for (int i = 0; i < 4; i++) {
-            switch (i) {
-                case 0 -> bounds = new int[]{0, pos.x};
-                case 1 -> bounds = new int[]{pos.x, 8};
-                case 2 -> bounds = new int[]{0, pos.y};
-                case 3 -> bounds = new int[]{pos.y, 8};
-            }
-
-            for (int j = bounds[0]; j < bounds[1]; j++) {
+            for (int j = 0; j < 8; j++) {
                 switch (i) {
-                    case 0, 1 -> tempPos = new Point(j, pos.y);
-                    case 2, 3 -> tempPos = new Point(pos.x, j);
+                    case 0 -> tempPos = new Point(pos.x - j, pos.y);
+                    case 1 -> tempPos = new Point(pos.x + j, pos.y);
+                    case 2 -> tempPos = new Point(pos.x, pos.y - j);
+                    case 3 -> tempPos = new Point(pos.x, pos.y + j);
                     default -> tempPos = new Point(pos);
                 }
-
 
                 if (GameBoard.validatePosition(tempPos) && !pos.equals(tempPos)) {
                     posList.get(i + 4).add(tempPos);

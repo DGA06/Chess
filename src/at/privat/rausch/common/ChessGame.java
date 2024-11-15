@@ -77,6 +77,14 @@ public class ChessGame {
     public boolean isPossible(Point dest) {
         for (ArrayList<Point> directionMoves : possibleMoves) {
             if (directionMoves.contains(dest)) {
+                for (Point directionPos : directionMoves) {
+                    if (directionPos.equals(dest)) break;
+
+                    if (!isFree(directionPos)) {
+                        return false;
+                    }
+                }
+
                 if (isFree(dest)) {
                     return true;
                 }
